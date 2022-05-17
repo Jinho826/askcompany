@@ -31,11 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    #third apps
+    'django_extensions',
+    #locals apps
     'django.contrib.staticfiles',
     'instagram',
 ]
