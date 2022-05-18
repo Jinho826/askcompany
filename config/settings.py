@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #locals apps
     'django.contrib.staticfiles',
     'instagram',
+    'accounts',
 ]
 
 MIDDLEWARE = [
