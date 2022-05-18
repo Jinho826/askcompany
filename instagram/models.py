@@ -5,6 +5,7 @@ class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     message = models.TextField()
     photo = models.ImageField(blank=True, upload_to='instagram/post/%Y%m%d')
+    tag_set = models.ManyToManyField('Tag', blank=True) #포스팅 할때 Tag가 없는 경우가 있을수 있으니깐
     is_public = models.BooleanField(default=False, verbose_name="공개여부")
     create_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -26,3 +27,10 @@ class Comment(models.Model):
     message = models.TextField()
     create_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    # post_set = models.ManyToManyField(Post)
+
+    def __str__(self):
+        return self.name
