@@ -4,7 +4,6 @@ from .models import Post
 
 def post_list(request):
     qs = Post.objects.all()
-    print(request)
     q = request.GET.get('q', '')
     if q:
         qs = qs.filter(message__icontains=q)
@@ -14,7 +13,10 @@ def post_list(request):
     })
 
 def post_detail(request, pk):
-    pass
+    post = Post.objects.get(pk=pk)
+    return render(request, 'instagram/post_detail.html',{
+        'post' : post
+    })
 
 def archives_year(request, year):
     return HttpResponse(f"{year}년 archives")
