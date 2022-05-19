@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -7,12 +8,15 @@ class Post(models.Model):
     photo = models.ImageField(blank=True, upload_to='instagram/post/%Y%m%d')
     tag_set = models.ManyToManyField('Tag', blank=True) #포스팅 할때 Tag가 없는 경우가 있을수 있으니깐
     is_public = models.BooleanField(default=False, verbose_name="공개여부")
-    create_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         # return f"Post object ({self.id})"
         return self.message
+
+    def get_absolute_url(self):
+        return reverse('instagram:post_detail', args=[self.pk])
 
     class Meta:
         ordering = ['-id']
@@ -25,7 +29,7 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, limit_choices_to={'is_public' : True})
     message = models.TextField()
-    create_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 class Tag(models.Model):

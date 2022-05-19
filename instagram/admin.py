@@ -6,9 +6,9 @@ from .models import Post, Comment, Tag
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['id', 'photo_tag', 'message', 'message_length','is_public', 'create_at', 'updated_at']
+    list_display = ['id', 'photo_tag', 'message', 'message_length','is_public', 'created_at', 'updated_at']
     list_display_links= ['message']
-    list_filter = ['create_at','is_public']
+    list_filter = ['created_at','is_public']
     search_fields = ['message']
 
     def photo_tag(self, post):
