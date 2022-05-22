@@ -50,6 +50,21 @@ def post_edit(request, pk):
         'post': post,
     })
 
+@login_required
+def post_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+
+    if post.author != request.user:
+        messages.error(request, '작성자만 삭제할 수 있습니다.')
+        return redirect(post)
+
+    if request.method == 'POST':
+        post.delete()
+        messages.success(request, '포스팅을 삭제했습니다.')
+        return redirect('instagram:post_list')
+    return render(request, 'instagram/post_confirm_delete.html',{
+        'post' : post,
+    })
 # post_list = ListView.as_view(model=Post, paginate_by=10)
 
 @login_required
