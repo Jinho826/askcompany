@@ -1,10 +1,13 @@
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from django.core.validators import MinLengthValidator
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    message = models.TextField()
+    message = models.TextField(
+        validators=[MinLengthValidator(10)]
+    )
     photo = models.ImageField(blank=True, upload_to='instagram/post/%Y%m%d')
     tag_set = models.ManyToManyField('Tag', blank=True) #포스팅 할때 Tag가 없는 경우가 있을수 있으니깐
     is_public = models.BooleanField(default=False, verbose_name="공개여부")
