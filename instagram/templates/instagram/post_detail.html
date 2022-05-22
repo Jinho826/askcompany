@@ -9,7 +9,7 @@
 
     {% if post.photo %}
         <div>
-            <img src="{{ post.photo.url }}" />
+            <img src="{{ post.photo.url }}" style="width:500px"/>
         </div>
     {% endif %}
 
@@ -17,5 +17,8 @@
     <hr/>
     <a href="{% url 'instagram:post_list' %}" class="btn btn-primary">
         목록
+    </a>
+    <a href="{% url 'instagram:post_edit' post.pk %}" class="btn btn-primary">
+        수정
     </a>
 {% endblock content %}
