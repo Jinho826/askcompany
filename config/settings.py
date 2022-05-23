@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+from django.urls import reverse_lazy
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -139,3 +139,5 @@ MESSAGE_TAGS = {
     messages_contants.DEBUG: 'secondary',
     messages_contants.ERROR: 'danger',
 }
+
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
