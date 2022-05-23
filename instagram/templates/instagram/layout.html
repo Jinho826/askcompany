@@ -1,13 +1,15 @@
-
 {% load static %}
+{% load bootstrap4 static %}
+
+
 <!doctype html>
 <html lang="ko">
 <head>
     <meta charset="utf-8" />
     <title>{% block title %}{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'bootstrap-4.4.1-dist/css/bootstrap.css'%}"/>
-    <script src="{% static 'jquery-3.4.1.min.js'%}"></script>
-    <script src="{% static 'bootstrap-4.4.1-dist/js/bootstrap'%}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap-4.4.1-dist/css/bootstrap.css' %}" />
+    <script src="{% static 'jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap-4.4.1-dist/js/bootstrap.js' %}"></script>
     <style>
         body {
             padding-top: 5rem;
